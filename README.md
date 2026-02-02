@@ -1,53 +1,260 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<div align="center">
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# 🔐 User Management API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Modern REST API for User Management
 
-## Description
+Built with **NestJS**, **Prisma**, and **PostgreSQL**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
-## Project setup
+</div>
+
+---
+
+## ✨ Features
+
+- 🎯 **CRUD Operations** - Create, Read, Update, Delete users
+- 📄 **Pagination** - Efficient data handling with paginated responses
+- 🔍 **Advanced Filtering** - Search by email, name, and role
+- 🗑️ **Soft Delete** - Recoverable user deletion
+- 🔒 **Password Hashing** - Secure bcrypt encryption
+- 🏗️ **Modular Architecture** - Clean, maintainable code structure
+- 🎨 **Type-Safe** - Full TypeScript support
+- 🚀 **Modern ORM** - Prisma with PostgreSQL adapter
+
+---
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have installed:
+
+- **Node.js** (v18 or higher)
+- **PostgreSQL** (v14 or higher)
+- **npm** or **yarn**
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Clone the repository
 
 ```bash
-$ npm install
+git clone <your-repo-url>
+cd user-management-api
 ```
 
-## Compile and run the project
+### 2️⃣ Install dependencies
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+### 3️⃣ Configure environment variables
+
+Create a `.env` file in the root directory:
+
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/database_name"
+PORT=3000
+```
+
+### 4️⃣ Run database migrations
 
 ```bash
-# unit tests
+npx prisma migrate dev
+```
+
+### 5️⃣ Start the application
+
+```bash
+# Development mode
+npm run start:dev
+
+# Production mode
+npm run start:prod
+```
+
+🎉 **Your API is now running at** `http://localhost:3000`
+
+---
+
+## 📚 API Endpoints
+
+### Users
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/users` | Get all users with pagination and filters |
+| `GET` | `/users/active` | Get active users with pagination |
+| `GET` | `/users/:id` | Get user by ID |
+| `POST` | `/users` | Create new user |
+| `PATCH` | `/users/:id` | Update user |
+| `DELETE` | `/users/:id` | Soft delete user |
+| `PATCH` | `/users/:id/restore` | Restore deleted user |
+
+### 📖 Detailed Examples
+
+#### Get All Users (with pagination and filters)
+
+```bash
+GET /users?page=1&limit=10&email=test&name=john&role=USER
+```
+
+**Response:**
+```json
+{
+  "data": [
+    {
+      "id": "uuid",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "role": "USER",
+      "createdAt": "2026-02-02T...",
+      "updatedAt": "2026-02-02T...",
+      "deletedAt": null
+    }
+  ],
+  "total": 50,
+  "page": 1,
+  "limit": 10,
+  "totalPages": 5
+}
+```
+
+#### Create User
+
+```bash
+POST /users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "SecurePassword123"
+}
+```
+
+---
+
+## 🏗️ Project Structure
+
+```
+src/
+├── prisma/              # Prisma service and module
+│   ├── prisma.module.ts
+│   └── prisma.service.ts
+├── users/               # Users module
+│   ├── dto/            # Data Transfer Objects
+│   ├── users.controller.ts
+│   ├── users.service.ts
+│   └── users.module.ts
+├── app.module.ts        # Root module
+└── main.ts             # Application entry point
+
+prisma/
+├── migrations/          # Database migrations
+└── schema.prisma       # Database schema
+```
+
+---
+
+## 🗄️ Database Schema
+
+```prisma
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  password  String
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+```
+
+---
+
+## 🛠️ Technologies Used
+
+- **[NestJS](https://nestjs.com/)** - Progressive Node.js framework
+- **[Prisma](https://www.prisma.io/)** - Next-generation ORM
+- **[PostgreSQL](https://www.postgresql.org/)** - Relational database
+- **[TypeScript](https://www.typescriptlang.org/)** - Typed JavaScript
+- **[bcrypt](https://www.npmjs.com/package/bcrypt)** - Password hashing
+- **[class-validator](https://github.com/typestack/class-validator)** - Validation decorators
+
+---
+
+## 📝 Available Scripts
+
+```bash
+# Development
+npm run start:dev        # Run in watch mode
+
+# Build
+npm run build            # Compile TypeScript
+
+# Production
+npm run start:prod       # Run production build
+
+# Database
+npx prisma migrate dev   # Create and apply migrations
+npx prisma studio        # Open Prisma Studio GUI
+npx prisma generate      # Generate Prisma Client
+
+# Linting & Formatting
+npm run lint             # Run ESLint
+npm run format           # Format with Prettier
+```
+
+---
+
+## 🔧 Configuration
+
+### Environment Variables
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/db` |
+| `PORT` | Server port | `3000` |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+<div align="center">
+
+**Made with ❤️ using NestJS & Prisma**
+
+⭐ Star this repo if you find it helpful!
+
+</div>
 $ npm run test
 
 # e2e tests
