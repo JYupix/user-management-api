@@ -85,15 +85,17 @@ npm run start:prod
 
 ### Users
 
-| Method | Endpoint | Description | Params |
-|--------|----------|-------------|--------|
-| `GET` | `/users` | Get all users with pagination and filters | `?page=1&limit=10&email=test&name=john&role=USER` |
-| `GET` | `/users/active` | Get active users with pagination | `?page=1&limit=10` |
-| `GET` | `/users/:id` | Get user by ID | - |
-| `POST` | `/users` | Create new user | - |
-| `PATCH` | `/users/:id` | Update user | - |
-| `DELETE` | `/users/:id` | Soft delete user | - |
-| `PATCH` | `/users/:id/restore` | Restore deleted user | - |
+
+| Method | Endpoint | Description | Query / Body / Headers |
+|--------|----------|-------------|-----------------------|
+| `GET` | `/users` | Get all users with pagination and filters 🔒 | Query: `?page=1&limit=10&email=test&name=john&role=USER` <br> Headers: `Authorization: Bearer <token>` |
+| `GET` | `/users/active` | Get active users with pagination 🔒 | Query: `?page=1&limit=10` <br> Headers: `Authorization: Bearer <token>` |
+| `GET` | `/users/:id` | Get user by ID 🔒 | Path: `id` <br> Headers: `Authorization: Bearer <token>` |
+| `POST` | `/users` | Create new user 🔒 | Body: `{ "name": "John", "email": "john@test.com", "password": "secret" }` <br> Headers: `Authorization: Bearer <token>` |
+| `PATCH` | `/users/:id` | Update user 🔒 | Body: `{ "name": "Jane", "role": "ADMIN" }` <br> Path: `id` <br> Headers: `Authorization: Bearer <token>` |
+| `DELETE` | `/users/:id` | Soft delete user 🔒 | Path: `id` <br> Headers: `Authorization: Bearer <token>` |
+| `PATCH` | `/users/:id/restore` | Restore deleted user 🔒 | Path: `id` <br> Headers: `Authorization: Bearer <token>` |
+
 
 ### 📖 Detailed Examples
 
