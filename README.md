@@ -43,7 +43,7 @@ Before you begin, ensure you have installed:
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/JYupix/user-management-api
 cd user-management-api
 ```
 
@@ -59,7 +59,6 @@ Create a `.env` file in the root directory:
 
 ```env
 DATABASE_URL="postgresql://username:password@localhost:5432/database_name"
-PORT=3000
 ```
 
 ### 4️⃣ Run database migrations
@@ -86,15 +85,15 @@ npm run start:prod
 
 ### Users
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/users` | Get all users with pagination and filters |
-| `GET` | `/users/active` | Get active users with pagination |
-| `GET` | `/users/:id` | Get user by ID |
-| `POST` | `/users` | Create new user |
-| `PATCH` | `/users/:id` | Update user |
-| `DELETE` | `/users/:id` | Soft delete user |
-| `PATCH` | `/users/:id/restore` | Restore deleted user |
+| Method | Endpoint | Description | Params |
+|--------|----------|-------------|--------|
+| `GET` | `/users` | Get all users with pagination and filters | `?page=1&limit=10&email=test&name=john&role=USER` |
+| `GET` | `/users/active` | Get active users with pagination | `?page=1&limit=10` |
+| `GET` | `/users/:id` | Get user by ID | - |
+| `POST` | `/users` | Create new user | - |
+| `PATCH` | `/users/:id` | Update user | - |
+| `DELETE` | `/users/:id` | Soft delete user | - |
+| `PATCH` | `/users/:id/restore` | Restore deleted user | - |
 
 ### 📖 Detailed Examples
 
@@ -125,19 +124,6 @@ GET /users?page=1&limit=10&email=test&name=john&role=USER
 }
 ```
 
-#### Create User
-
-```bash
-POST /users
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "SecurePassword123"
-}
-```
-
 ---
 
 ## 🏗️ Project Structure
@@ -162,28 +148,6 @@ prisma/
 
 ---
 
-## 🗄️ Database Schema
-
-```prisma
-model User {
-  id        String    @id @default(uuid())
-  name      String
-  email     String    @unique
-  password  String
-  role      Role      @default(USER)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-}
-
-enum Role {
-  USER
-  ADMIN
-}
-```
-
----
-
 ## 🛠️ Technologies Used
 
 - **[NestJS](https://nestjs.com/)** - Progressive Node.js framework
@@ -192,59 +156,7 @@ enum Role {
 - **[TypeScript](https://www.typescriptlang.org/)** - Typed JavaScript
 - **[bcrypt](https://www.npmjs.com/package/bcrypt)** - Password hashing
 - **[class-validator](https://github.com/typestack/class-validator)** - Validation decorators
-
----
-
-## 📝 Available Scripts
-
-```bash
-# Development
-npm run start:dev        # Run in watch mode
-
-# Build
-npm run build            # Compile TypeScript
-
-# Production
-npm run start:prod       # Run production build
-
-# Database
-npx prisma migrate dev   # Create and apply migrations
-npx prisma studio        # Open Prisma Studio GUI
-npx prisma generate      # Generate Prisma Client
-
-# Linting & Formatting
-npm run lint             # Run ESLint
-npm run format           # Format with Prettier
-```
-
----
-
-## 🔧 Configuration
-
-### Environment Variables
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/db` |
-| `PORT` | Server port | `3000` |
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+- **[class-transformer](https://github.com/typestack/class-transformer)** - Object transformation
 
 ---
 
@@ -255,51 +167,3 @@ This project is licensed under the MIT License.
 ⭐ Star this repo if you find it helpful!
 
 </div>
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
