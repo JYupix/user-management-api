@@ -98,7 +98,19 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
 npx prisma migrate dev
 ```
 
-### 5️⃣ Start the application
+### 5️⃣ Seed the database (optional)
+
+Populate the database with test data:
+
+```bash
+npx prisma db seed
+```
+
+This creates:
+- **1 Admin**: `admin@example.com` / `Admin123`
+- **50 Users**: `firstname.lastname{1-50}@example.com` / `User123`
+
+### 6️⃣ Start the application
 
 ```bash
 # Development mode with hot reload
