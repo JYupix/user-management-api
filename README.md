@@ -12,8 +12,6 @@ Built with **NestJS**, **Prisma**, **PostgreSQL** & **JWT**
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 
-[🚀 Quick Start](#-quick-start) • [🔒 Security](#-security-features)
-
 </div>
 
 ---
