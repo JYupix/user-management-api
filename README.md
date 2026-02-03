@@ -12,7 +12,7 @@ Built with **NestJS**, **Prisma**, **PostgreSQL** & **JWT**
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 
-[📖 API Documentation](http://localhost:3000/api/docs) • [🚀 Quick Start](#-quick-start) • [🔒 Security](#-security-features)
+[🚀 Quick Start](#-quick-start) • [🔒 Security](#-security-features)
 
 </div>
 
@@ -303,75 +303,6 @@ prisma/
 
 ---
 
-## 🧪 Testing
-
-```bash
-# Unit tests
-npm run test
-
-# E2E tests
-npm run test:e2e
-
-# Test coverage
-npm run test:cov
-```
-
----
-
-## 📝 Available Scripts
-
-```bash
-npm run start          # Start in production mode
-npm run start:dev      # Start in development mode (watch)
-npm run start:debug    # Start in debug mode
-npm run build          # Build for production
-npm run format         # Format code with Prettier
-npm run lint           # Lint code with ESLint
-```
-
----
-
-## 🌐 Environment Variables
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `PORT` | Server port | `3000` |
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/db` |
-| `JWT_SECRET` | JWT access token secret | `your-secret-key` |
-| `JWT_REFRESH_SECRET` | JWT refresh token secret | `your-refresh-key` |
-| `ALLOWED_ORIGINS` | Comma-separated CORS origins | `http://localhost:3000` |
-
----
-
-## 🚨 Error Handling
-
-All errors follow a standardized format:
-
-```json
-{
-  "statusCode": 400,
-  "timestamp": "2026-02-03T10:00:00.000Z",
-  "path": "/api/auth/login",
-  "message": [
-    "Email is required",
-    "Password must be at least 6 characters long"
-  ]
-}
-```
-
-Common HTTP status codes:
-- `200` - Success
-- `201` - Created
-- `400` - Bad Request (validation errors)
-- `401` - Unauthorized (authentication failed)
-- `403` - Forbidden (insufficient permissions)
-- `404` - Not Found
-- `409` - Conflict (e.g., email already exists)
-- `429` - Too Many Requests (rate limit exceeded)
-- `500` - Internal Server Error
-
----
-
 ## 📄 License
 
 This project is licensed under the [UNLICENSED](LICENSE) license.
@@ -383,7 +314,5 @@ This project is licensed under the [UNLICENSED](LICENSE) license.
 **Made with ❤️ using NestJS, Prisma & TypeScript**
 
 ⭐ Star this repo if you find it helpful!
-
-[Report Bug](https://github.com/yourusername/user-management-api/issues) • [Request Feature](https://github.com/yourusername/user-management-api/issues)
 
 </div>
